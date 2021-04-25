@@ -27,8 +27,8 @@ func _fire():
 	new_projectile.initialize(fire_direction, initial_direction)
 	
 func _set_initial_position():
-	global_position.x = rand_range(0, 1000)
-	global_position.y = rand_range(0, 400)
+	global_position.x = rand_range(0, OS.get_window_size().x)
+	global_position.y = rand_range(0, OS.get_window_size().y / 2)
 
 func _on_FireTimer_timeout():
 	_fire()
