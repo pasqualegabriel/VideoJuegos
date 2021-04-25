@@ -11,12 +11,9 @@ func initialize(fire_direction:Vector2, initial_position:Vector2):
 	direction = fire_direction
 	timer.start()
 
-
 func _physics_process(delta):
 	position += direction * speed * delta
-
 
 func _on_DeleteTimer_timeout():
 	get_parent().remove_child(self)
 	queue_free()
-	
