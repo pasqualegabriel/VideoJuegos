@@ -18,9 +18,14 @@ func _physics_process(delta):
 	
 	var right := Input.is_action_pressed("move_right")
 	var left := Input.is_action_pressed("move_left")
-	var direction_optimized:int = int(right) - int(left)
+	var x_direction_optimized:int = int(right) - int(left)
 	
-	position.x += direction_optimized * speed * delta
+	position.x += x_direction_optimized * speed * delta
 	
-	if right or left:
-		container.set_player_position(position)
+	var down := Input.is_action_pressed("move_down")
+	var up := Input.is_action_pressed("move_up")
+	var y_direction_optimized:int = int(down) - int(up)
+	
+	position.y += y_direction_optimized * speed * delta
+	
+	container.set_player_position(position)
