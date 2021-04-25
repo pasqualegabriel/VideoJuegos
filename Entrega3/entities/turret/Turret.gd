@@ -17,6 +17,7 @@ func set_player_position(new_player_position):
 func initialize(projectile_container, player_start_position):
 	container = projectile_container
 	player_position = player_start_position
+	_set_initial_position()
 
 func _fire():
 	var new_projectile = turret_projectile_scene.instance()
@@ -24,6 +25,10 @@ func _fire():
 	var fire_direction = (player_position - global_position).normalized()
 	var initial_direction = turret_fire_position.global_position
 	new_projectile.initialize(fire_direction, initial_direction)
+	
+func _set_initial_position():
+	global_position.x = rand_range(0, 1000)
+	global_position.y = rand_range(0, 400)
 
 func _on_FireTimer_timeout():
 	_fire()
