@@ -3,6 +3,7 @@ extends Sprite
 var speed = 200 #Pixeles
 
 onready var turret_fire_position = $TurretFirePosition
+onready var fire_timer = $FireTimer
 
 export (PackedScene) var turret_projectile_scene:PackedScene
 
@@ -24,6 +25,5 @@ func _fire():
 	var initial_direction = turret_fire_position.global_position
 	new_projectile.initialize(fire_direction, initial_direction)
 
-func _physics_process(delta):
-	if Input.is_action_just_pressed("shoot"):
-		_fire()
+func _on_FireTimer_timeout():
+	_fire()

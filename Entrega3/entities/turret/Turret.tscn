@@ -10,3 +10,8 @@ script = ExtResource( 2 )
 turret_projectile_scene = ExtResource( 3 )
 
 [node name="TurretFirePosition" type="Position2D" parent="."]
+
+[node name="FireTimer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="FireTimer" to="." method="_on_FireTimer_timeout"]
