@@ -20,6 +20,8 @@ func _ready():
 	add_child(star)
 	star.set_position(star_position)
 	
+	$Music.play()
+	
 
 func initialize_turrets():
 	var visible_rect:Rect2 = get_viewport().get_visible_rect()
