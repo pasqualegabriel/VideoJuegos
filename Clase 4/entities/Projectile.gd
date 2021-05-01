@@ -4,10 +4,12 @@ onready var lifetime_timer = $LifetimeTimer
 
 export (float) var VELOCITY:float = 800.0
 
+var container
 var direction:Vector2
 var is_player_projectile = false
 
 func initialize(container, spawn_position:Vector2, direction:Vector2, is_player_projectile):
+	self.container = container
 	container.add_child(self)
 	self.direction = direction
 	self.is_player_projectile = is_player_projectile
@@ -29,3 +31,13 @@ func _remove():
 func _on_Projectile_body_entered(body):
 	if body.has_method("notify_hit") and !is_player_projectile:
 		body.notify_hit()
+	if body.is_in_group("player") and !is_player_projectile:
+		container.turret_hit()
+		_remove()
+	if body.is_in_group("turret") and is_player_projectile:
+		container.player_hit()
+		if body.has_method("hit"):
+			body.hit()
+		_remove()
+	if body.is_in_group("ball"):
+		_remove()

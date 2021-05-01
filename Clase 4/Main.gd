@@ -53,3 +53,9 @@ func lost():
 	
 func go_back():
 	player.set_start_position($StartPosition.position)
+	
+func player_hit():
+	$Win.play()
+	
+func turret_hit():
+	$Lost.play()

@@ -8,6 +8,9 @@ export (PackedScene) var projectile_scene
 var player
 var projectile_container
 
+func _ready():
+	add_to_group("turret")
+
 func initialize(turret_pos, player, projectile_container):
 	global_position = turret_pos
 	self.player = player
@@ -25,3 +28,7 @@ func _on_Area2D_body_entered(body):
 func _on_Area2D_body_exited(body):
 	if body.has_method("notify_hit"):
 		fire_timer.stop()
+		
+func hit():
+	projectile_container.remove_child(self)
+	queue_free()
