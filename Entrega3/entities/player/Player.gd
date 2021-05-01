@@ -28,4 +28,3 @@ func _physics_process(delta):
 	
 	position.y += y_direction_optimized * speed * delta
 	
-	container.set_player_position(position)
