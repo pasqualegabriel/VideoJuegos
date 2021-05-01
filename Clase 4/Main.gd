@@ -8,12 +8,13 @@ onready var turret := $Turret
 onready var star_scene := preload("res://entities/collectibles/Star.tscn")
 
 var star_position := Vector2(1600,160)
-var lives:int = 5
+var lives:int = 9
 
 func _ready():
 	randomize()
-	player.initialize(self)
-	turret.initialize(self, turret.position, player, self)
+	player.initialize(self, $StartPosition.position)
+	$GoBack.initialize(self)
+	turret.initialize(turret.position, player, self)
 	
 	initialize_turrets()
 	
@@ -31,7 +32,8 @@ func initialize_turrets():
 	for i in 3:
 		var turret_instance = turret_scene.instance()
 		var turret_pos:Vector2 = Vector2(rand_range(visible_rect.position.x, visible_rect.end.x), rand_range(visible_rect.position.y + 30, player.global_position.y - 50))
-		turret_instance.initialize(self, turret_pos, player, self)
+		add_child(turret_instance)
+		turret_instance.initialize(turret_pos, player, self)
 		
 func hit():
 	if lives == 0:
@@ -48,3 +50,6 @@ func win():
 func lost():
 	$Music.stop()
 	$Lost.play()
+	
+func go_back():
+	player.set_start_position($StartPosition.position)

@@ -8,10 +8,7 @@ export (PackedScene) var projectile_scene
 var player
 var projectile_container
 
-func initialize(container, turret_pos, player, projectile_container):
-	#si la torreta no es hijo ya del container, este se agrega como hijo
-	if !container.has_node(self.get_path()):
-		container.add_child(self) 
+func initialize(turret_pos, player, projectile_container):
 	global_position = turret_pos
 	self.player = player
 	self.projectile_container = projectile_container

@@ -18,9 +18,10 @@ var snap_vector:Vector2 = SNAP_DIRECTION * SNAP_LENGHT
 var projectile_container
 var hits = 0
 
-func initialize(projectile_container):
+func initialize(projectile_container, start_position):
 	self.projectile_container = projectile_container
 	cannon.projectile_container = projectile_container
+	position = start_position
 
 func get_input():
 	# Cannon fire
@@ -61,3 +62,6 @@ func _ready():
 func bye():
 	projectile_container.remove_child(self)
 	queue_free()
+	
+func set_start_position(start_position):
+	position = start_position
