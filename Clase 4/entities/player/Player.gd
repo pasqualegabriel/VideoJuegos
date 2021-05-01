@@ -53,6 +53,11 @@ func _physics_process(delta):
 func notify_hit():
 	hits += 1
 	print("ouch " + str(hits))
+	projectile_container.hit()
 	
 func _ready():
 	add_to_group("player")
+	
+func bye():
+	projectile_container.remove_child(self)
+	queue_free()

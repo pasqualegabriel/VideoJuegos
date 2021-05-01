@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://entities/player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://assets/textures/background.png" type="Texture" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://assets/sounds/lost.wav" type="AudioStream" id=8]
 [ext_resource path="res://assets/sounds/game.wav" type="AudioStream" id=9]
 [ext_resource path="res://assets/sounds/win.wav" type="AudioStream" id=10]
+[ext_resource path="res://entities/collectibles/Life.tscn" type="PackedScene" id=11]
 
 [node name="Main" type="Node"]
 script = ExtResource( 3 )
@@ -50,3 +51,5 @@ stream = ExtResource( 10 )
 
 [node name="Lost" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
+
+[node name="Life" parent="." instance=ExtResource( 11 )]

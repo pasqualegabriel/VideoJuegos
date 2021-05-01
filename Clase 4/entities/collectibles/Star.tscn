@@ -182,7 +182,7 @@ height = 100.536
 [node name="Star" type="AnimatedSprite"]
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 42 )
-frame = 5
+frame = 8
 playing = true
 script = ExtResource( 2 )
 
