@@ -16,7 +16,6 @@ export (int) var jump_speed:float = 650
 var velocity:Vector2 = Vector2.ZERO
 var snap_vector:Vector2 = SNAP_DIRECTION * SNAP_LENGHT
 var projectile_container
-var hits = 0
 
 func initialize(projectile_container, start_position):
 	self.projectile_container = projectile_container
@@ -52,16 +51,10 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 	
 func notify_hit():
-	hits += 1
-	print("ouch " + str(hits))
 	projectile_container.hit()
 	
 func _ready():
 	add_to_group("player")
-	
-func bye():
-	projectile_container.remove_child(self)
-	queue_free()
 	
 func set_start_position(start_position):
 	position = start_position
