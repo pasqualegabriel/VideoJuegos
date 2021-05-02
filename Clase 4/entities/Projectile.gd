@@ -25,7 +25,7 @@ func _on_lifetime_timer_timeout():
 	_remove()
 
 func _remove():
-	get_parent().remove_child(self)
+	container.remove_child(self)
 	queue_free()
 
 func _on_Projectile_body_entered(body):
@@ -33,11 +33,7 @@ func _on_Projectile_body_entered(body):
 		body.notify_hit()
 	if body.is_in_group("player") and !is_player_projectile:
 		container.turret_hit()
-		_remove()
 	if body.is_in_group("turret") and is_player_projectile:
 		container.player_hit()
 		if body.has_method("hit"):
 			body.hit()
-		_remove()
-	if body.is_in_group("ball"):
-		_remove()

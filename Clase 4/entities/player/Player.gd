@@ -49,7 +49,7 @@ func get_input():
 func _physics_process(delta):
 	get_input()
 	velocity.y += gravity
-	velocity = move_and_slide(velocity, FLOOR_NORMAL)	
+	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 	
 func notify_hit():
 	hits += 1

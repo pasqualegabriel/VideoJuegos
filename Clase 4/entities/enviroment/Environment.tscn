@@ -1,6 +1,12 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/textures/floor.png" type="Texture" id=1]
+[ext_resource path="res://assets/textures/jumpable_platform.png" type="Texture" id=2]
+[ext_resource path="res://assets/textures/gray_square.png" type="Texture" id=3]
+[ext_resource path="res://assets/textures/brown_square.png" type="Texture" id=4]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 10.139, 76.5508 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 36.5617, 15.4011 )
@@ -8,7 +14,58 @@ extents = Vector2( 36.5617, 15.4011 )
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 48.0425, 336.219 )
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 116.61, 10 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 17.775, 18.2021 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 47.9358, 59.2596 )
+
 [node name="Environment" type="Node"]
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2( 601.583, 199.237 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Wall"]
+position = Vector2( 0.0579661, -0.0393517 )
+scale = Vector2( 0.306601, 2.31898 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+shape = SubResource( 4 )
+
+[node name="Wall2" type="StaticBody2D" parent="."]
+position = Vector2( 879.082, 431.43 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Wall2"]
+position = Vector2( 0.0579661, -0.0393517 )
+scale = Vector2( 0.306601, 2.31898 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall2"]
+shape = SubResource( 4 )
+
+[node name="Wall3" type="StaticBody2D" parent="."]
+position = Vector2( 1184.9, 286.074 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Wall3"]
+position = Vector2( 0.0579661, -0.0393517 )
+scale = Vector2( 0.306601, 2.31898 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall3"]
+shape = SubResource( 4 )
 
 [node name="Floor" type="StaticBody2D" parent="."]
 position = Vector2( 1000, 493.791 )
@@ -55,3 +112,144 @@ texture = ExtResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
 position = Vector2( 15.9881, 268.229 )
 shape = SubResource( 2 )
+
+[node name="JumpArea" type="StaticBody2D" parent="."]
+position = Vector2( 208.931, 280.41 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="JumpArea"]
+position = Vector2( 0.00492928, 0.00158235 )
+scale = Vector2( 3.53359, 0.303039 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea"]
+shape = SubResource( 3 )
+
+[node name="JumpArea2" type="StaticBody2D" parent="."]
+position = Vector2( 510.971, 482.4 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="JumpArea2"]
+position = Vector2( 0.00492928, 0.00158235 )
+scale = Vector2( 3.53359, 0.303039 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea2"]
+shape = SubResource( 3 )
+
+[node name="JumpArea3" type="StaticBody2D" parent="."]
+position = Vector2( 1696.48, 340.818 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="JumpArea3"]
+position = Vector2( 0.00492928, 0.00158235 )
+scale = Vector2( 3.53359, 0.303039 )
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="JumpArea3"]
+shape = SubResource( 3 )
+
+[node name="Square" type="RigidBody2D" parent="."]
+position = Vector2( 755.625, 491.058 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Square"]
+position = Vector2( -0.011822, -0.00748086 )
+scale = Vector2( 0.177814, 0.181933 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square"]
+shape = SubResource( 5 )
+
+[node name="Square2" type="RigidBody2D" parent="."]
+position = Vector2( 755.625, 453.26 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Square2"]
+position = Vector2( -0.011822, -0.00748086 )
+scale = Vector2( 0.177814, 0.181933 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square2"]
+shape = SubResource( 5 )
+
+[node name="Square3" type="RigidBody2D" parent="."]
+position = Vector2( 755.625, 415.462 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Square3"]
+position = Vector2( -0.011822, -0.00748086 )
+scale = Vector2( 0.177814, 0.181933 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square3"]
+shape = SubResource( 5 )
+
+[node name="Square4" type="RigidBody2D" parent="."]
+position = Vector2( 1118.48, 488.538 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Square4"]
+position = Vector2( -0.011822, -0.00748086 )
+scale = Vector2( 0.177814, 0.181933 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square4"]
+shape = SubResource( 5 )
+
+[node name="Square5" type="RigidBody2D" parent="."]
+position = Vector2( 879.097, 333.567 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Square5"]
+position = Vector2( -0.011822, -0.00748086 )
+scale = Vector2( 0.177814, 0.181933 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square5"]
+shape = SubResource( 5 )
+
+[node name="Square6" type="RigidBody2D" parent="."]
+position = Vector2( 1118.48, 450.74 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="Square6"]
+position = Vector2( -0.011822, -0.00748086 )
+scale = Vector2( 0.177814, 0.181933 )
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Square6"]
+shape = SubResource( 5 )
+
+[node name="StaticSquare" type="StaticBody2D" parent="."]
+position = Vector2( 1394.1, 451.23 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="StaticSquare"]
+position = Vector2( -0.530102, 0.0214429 )
+scale = Vector2( 0.425539, 0.526583 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticSquare"]
+position = Vector2( -0.529739, -7.62939e-06 )
+shape = SubResource( 6 )

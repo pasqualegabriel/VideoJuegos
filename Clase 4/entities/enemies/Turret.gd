@@ -41,7 +41,7 @@ func _on_Area2D_body_exited(body):
 		
 func _physics_process(delta):
 	update()
-	if is_instance_valid(target):
+	if target:
 		aim()
 		
 func hit():
