@@ -7,8 +7,8 @@ onready var background := $Background
 onready var turret := $Turret
 onready var star_scene := preload("res://entities/collectibles/Star.tscn")
 
-var star_position := Vector2(1600,160)
-var lives:int = 9
+var star_position := Vector2(1900,160)
+var lives:int = 5
 
 func _ready():
 	randomize()
@@ -26,7 +26,6 @@ func _ready():
 	$Life.initialize(lives)
 	$Music.play()
 	
-
 func initialize_turrets():
 	var visible_rect:Rect2 = get_viewport().get_visible_rect()
 	for i in 3:
@@ -58,4 +57,4 @@ func player_hit():
 	$Win.play()
 	
 func turret_hit():
-	$Lost.play()
+	$Hit.play()
