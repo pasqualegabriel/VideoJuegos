@@ -2,12 +2,15 @@ extends StaticBody2D
 
 onready var fire_position = $FirePosition
 onready var fire_timer = $FireTimer
+onready var die_timer = $DieTimer
 onready var raycast = $RayCast2D
+onready var turret = $Turret
 
 export (PackedScene) var projectile_scene
 
 var target
 var projectile_container
+var die = false
 
 func _ready():
 	fire_timer.connect("timeout", self, "fire")
@@ -33,11 +36,20 @@ func _physics_process(delta):
 			fire_timer.start()
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
-
+	if target:
+		var player_pos = (target.global_position - global_position).normalized()
+		if !turret.flip_h and player_pos.x < 0:
+			turret.flip_h = true
+		if turret.flip_h and player_pos.x >= 0:
+			turret.flip_h = false
 
 func notify_hit():
 	print("I'm turret and imma die")
-	call_deferred("_remove")
+	if !die:
+		die = true
+		turret.stop()
+		turret.play("die")
+		die_timer.start()
 
 func _remove():
 	get_parent().remove_child(self)
@@ -53,3 +65,7 @@ func _on_DetectionArea_body_exited(body):
 	if body == target:
 		target = null
 		set_physics_process(false)
+
+
+func _on_DieTimer_timeout():
+	call_deferred("_remove")
