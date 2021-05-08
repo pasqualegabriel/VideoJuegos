@@ -19,6 +19,7 @@ var projectile_container
 
 var velocity:Vector2 = Vector2.ZERO
 var snap_vector:Vector2 = SNAP_DIRECTION * SNAP_LENGHT
+var is_dead = false
 
 func initialize(projectile_container):
 	self.projectile_container = projectile_container
@@ -50,6 +51,8 @@ func get_input():
 	cannon.look_at(mouse_position)
 	
 func _set_animation(h_movement_direction, jump):
+	if is_dead and !animation_player.is_playing():
+		call_deferred("_remove")
 	if h_movement_direction != 0 and is_on_floor():
 		_play_animation("walk")
 	if h_movement_direction != 0 and int(!body.flip_h) != h_movement_direction:
@@ -71,8 +74,11 @@ func _physics_process(delta):
 
 
 func notify_hit():
-	print("I'm player and imma die")
-	call_deferred("_remove")
+	if !is_dead:
+		print("I'm player and imma die")
+		animation_player.stop()
+		animation_player.play("die")
+		is_dead = true
 
 func _remove():
 	set_physics_process(false)
