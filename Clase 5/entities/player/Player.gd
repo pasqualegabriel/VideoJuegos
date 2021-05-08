@@ -50,12 +50,14 @@ func get_input():
 	cannon.look_at(mouse_position)
 	
 func _set_animation(h_movement_direction, jump):
-	if !animation_player.is_playing() and h_movement_direction != 0 and is_on_floor():
+	if h_movement_direction != 0 and is_on_floor():
 		_play_animation("walk")
 	if h_movement_direction != 0 and int(!body.flip_h) != h_movement_direction:
 		_flip(h_movement_direction < 0)
 	if jump and is_on_floor():
 		_play_animation("jump")
+	if !animation_player.is_playing():
+		_play_animation("idle")
 
 func _physics_process(delta):
 	get_input()

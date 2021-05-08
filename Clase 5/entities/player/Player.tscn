@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://entities/player/Player.gd" type="Script" id=1]
 [ext_resource path="res://assets/textures/player/girl_spritesheet.png" type="Texture" id=2]
@@ -8,6 +8,22 @@
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 7.81534, 27.5431 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+step = 0.075
+tracks/0/type = "value"
+tracks/0/path = NodePath("Body:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.075, 0.15, 0.225, 0.3, 0.375, 0.45, 0.525, 0.6, 0.675, 0.75, 0.825, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42 ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "jump"
@@ -55,7 +71,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 50, 0 )
 hframes = 15
 vframes = 8
-frame = 78
+frame = 42
 
 [node name="Cannon" type="Sprite" parent="."]
 position = Vector2( -0.299478, -48.5621 )
@@ -71,5 +87,6 @@ position = Vector2( 15, 0 )
 shape = SubResource( 2 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/idle = SubResource( 4 )
 anims/jump = SubResource( 3 )
 anims/walk = SubResource( 1 )
