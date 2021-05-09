@@ -168,12 +168,12 @@ scale = Vector2( 4.12548, 3.35396 )
 texture = ExtResource( 10 )
 
 [node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_scale = Vector2( 1.1, 1 )
+motion_scale = Vector2( 1.1, 1.1 )
 motion_mirroring = Vector2( 928, 0 )
 
 [node name="Sprite" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
-position = Vector2( 1588.08, -499.504 )
-scale = Vector2( 3.70346, 3.36208 )
+position = Vector2( 1588.08, -455.266 )
+scale = Vector2( 3.70346, 3.54378 )
 texture = ExtResource( 11 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
