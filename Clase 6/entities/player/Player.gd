@@ -88,6 +88,9 @@ func _remove():
 	set_physics_process(false)
 	hide()
 	collision_layer = 0
+	
+func is_playing() ->bool:
+	return player_animation.is_playing()
 
 func is_on_floor()->bool:
 	var is_colliding:bool = .is_on_floor()

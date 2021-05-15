@@ -4,14 +4,16 @@ enum STATES {
 	IDLE,
 	WALK,
 	JUMP,
-	DEAD
+	DEAD,
+	ROLL
 }
 
 var animations_map:Dictionary = {
 	STATES.IDLE: "idle",
 	STATES.WALK: "walk",
 	STATES.JUMP: "jump",
-	STATES.DEAD: "dead"
+	STATES.DEAD: "dead",
+	STATES.ROLL: "roll"
 }
 
 var jumps = 0
@@ -32,16 +34,18 @@ func _state_logic(delta):
 	parent._apply_movement()
 
 func _get_transition(delta):
+	if jumps != 0 and parent.is_on_floor():
+		jumps = 0
 	if state != STATES.DEAD && PlayerData.current_health == 0:
 		parent.emit_signal("dead")
 		return STATES.DEAD
-	if Input.is_action_just_pressed("jump") && (parent.is_on_floor() or jumps < max_jumps) && [STATES.JUMP, STATES.IDLE, STATES.WALK].has(state):
+	if Input.is_action_just_pressed("jump") && (parent.is_on_floor() or jumps < max_jumps) && [STATES.JUMP, STATES.IDLE, STATES.WALK, STATES.ROLL].has(state):
 		parent.snap_vector = Vector2.ZERO
 		parent.velocity.y = -parent.jump_speed
 		jumps += 1
 		return STATES.JUMP
-	if jumps != 0 and parent.is_on_floor():
-		jumps = 0
+	if Input.is_action_just_pressed("roll") and [STATES.ROLL, STATES.IDLE, STATES.WALK].has(state):
+		return STATES.ROLL
 	
 	match state:
 		STATES.IDLE:
@@ -56,6 +60,10 @@ func _get_transition(delta):
 					return STATES.WALK
 				else:
 					return STATES.IDLE
+		STATES.ROLL:
+			if !parent.is_playing():
+				return STATES.IDLE
+			return STATES.ROLL
 	
 	return null
 
