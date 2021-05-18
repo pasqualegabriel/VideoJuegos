@@ -1,4 +1,4 @@
-extends RigidBody2D
+extends KinematicBody2D
 
 onready var fire_position = $FirePosition
 onready var fire_timer = $FireTimer
@@ -9,8 +9,13 @@ onready var body_sprite = $Body
 
 export (PackedScene) var projectile_scene
 
+var SPEED = 150
+var GRAVITY = 10
+var FLOOR = Vector2(0, -1)
 var target
 var projectile_container
+var velocity = Vector2()
+var direction = 1
 
 func _ready():
 	fire_timer.connect("timeout", self, "fire")
@@ -29,6 +34,18 @@ func fire():
 			projectile_container = get_parent()
 		proj_instance.initialize(projectile_container, fire_position.global_position, fire_position.global_position.direction_to(target.global_position))
 		fire_timer.start()
+		
+func _process(delta):
+	velocity.x = SPEED * direction
+	if direction == 1:
+		body_sprite.flip_h = false
+	else:
+		body_sprite.flip_h = true
+#	body_sprite.play("walk")
+	velocity.y += GRAVITY
+	velocity = move_and_slide(velocity, FLOOR)
+	if is_on_wall():
+		direction *= -1
 
 func _physics_process(delta):
 	body_sprite.flip_h = global_position.direction_to(target.global_position).x < 0
@@ -38,7 +55,6 @@ func _physics_process(delta):
 			fire_timer.start()
 	elif !fire_timer.is_stopped():
 		fire_timer.stop()
-
 
 func notify_hit(_amount):
 	if body_sprite.animation == "dead":
@@ -52,17 +68,17 @@ func _remove():
 	get_parent().remove_child(self)
 	queue_free()
 
-
 func _on_DetectionArea_body_entered(body):
 	if target == null:
 		target=body
+		set_process(false)
 		set_physics_process(true)
 
 func _on_DetectionArea_body_exited(body):
 	if body == target:
 		target = null
 		set_physics_process(false)
-
+		set_process(true)
 
 func _on_Body_animation_finished():
 	if body_sprite.animation == "spit":
