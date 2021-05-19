@@ -20,7 +20,6 @@ func _create_spawn_point_for_editor():
 	new_spawn.set_owner(get_tree().get_edited_scene_root())
 
 
-## Execution on runtime
 func _ready():
 	if !Engine.editor_hint:
 		call_deferred("_initialize")
