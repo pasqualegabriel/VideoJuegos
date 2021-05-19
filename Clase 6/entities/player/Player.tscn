@@ -122,7 +122,6 @@ texture = SubResource( 6 )
 offset = Vector2( 50, 0 )
 hframes = 15
 vframes = 8
-frame = 16
 
 [node name="Slime" type="Sprite" parent="."]
 position = Vector2( -1.26132, -72.3171 )
